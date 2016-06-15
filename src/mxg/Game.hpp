@@ -28,14 +28,14 @@ namespace mxg {
 
 class Game : public Application {
     public:
-        State* currentState() { return currentState_; }
+        State* state() { return state_; }
         void changeState(State* state);
-        void clearState() { currentState_ = nullptr; }
+        void clearState() { state_ = nullptr; }
 
     private:
         void throwExceptionIfNull(State* state);
 
-        State* currentState_{nullptr};
+        State* state_{nullptr};
 };
 
 } /* namespace mxg */

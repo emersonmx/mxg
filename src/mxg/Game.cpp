@@ -27,12 +27,12 @@ namespace mxg {
 void Game::changeState(State* state) {
     throwExceptionIfNull(state);
 
-    if (currentState_ != nullptr) {
-        currentState_->exit();
+    if (state_ != nullptr) {
+        state_->exit();
     }
     state->enter();
 
-    currentState_ = state;
+    state_ = state;
 }
 
 void Game::throwExceptionIfNull(State* state) {
