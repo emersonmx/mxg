@@ -52,4 +52,5 @@ target_link_libraries(mxg_tests
     libgtest
     libgmock
     libgmock_main
+    mxg
 )
