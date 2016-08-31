@@ -3,9 +3,10 @@
 
 #include "mxg/Application.hpp"
 
-using ::testing::AnyNumber;
+using ::testing::AtMost;
 using ::testing::Invoke;
 using ::testing::Sequence;
+using ::testing::Return;
 
 class MockApplication : public mxg::Application {
     public:
@@ -23,48 +24,48 @@ class ApplicationTest : public ::testing::Test {
                 .InSequence(mainLoop);
 
             EXPECT_CALL(app_, tick())
-                .Times(AnyNumber())
-                .InSequence(mainLoop);
+                .Times(AtMost(10))
+                .InSequence(mainLoop)
+                .WillOnce(Return())
+                .WillOnce(Return());
 
             EXPECT_CALL(app_, destroy())
                 .Times(1)
                 .InSequence(mainLoop);
+
+            ON_CALL(app_, tick())
+                .WillByDefault(Invoke([&](){
+                    app_.exit();
+                }));
         }
         virtual ~ApplicationTest() {}
 
         MockApplication app_;
 };
 
-TEST_F(ApplicationTest, RunOk) { 
-    ON_CALL(app_, tick()).WillByDefault(Invoke([&](){
-        app_.exit();
-    }));
-    int result = app_.run();
-    EXPECT_EQ(result, 0);
+TEST_F(ApplicationTest, RunOk) {
+    EXPECT_EQ(app_.run(), 0);
 }
 
-TEST_F(ApplicationTest, RunHasError) { 
+TEST_F(ApplicationTest, RunHasError) {
     int errorCode = 1;
     ON_CALL(app_, tick()).WillByDefault(Invoke([&](){
         app_.exit(errorCode);
     }));
-    int result = app_.run();
-    EXPECT_EQ(result, errorCode);
+    EXPECT_EQ(app_.run(), errorCode);
 }
 
-TEST_F(ApplicationTest, SkipMainLoop) { 
+TEST_F(ApplicationTest, SkipMainLoop) {
     ON_CALL(app_, create()).WillByDefault(Invoke([&](){
         app_.exit();
     }));
-    int result = app_.run();
-    EXPECT_EQ(result, 0);
+    EXPECT_EQ(app_.run(), 0);
 }
 
-TEST_F(ApplicationTest, SkipMainLoopWithError) { 
+TEST_F(ApplicationTest, SkipMainLoopWithError) {
     int errorCode = 1;
     ON_CALL(app_, create()).WillByDefault(Invoke([&](){
         app_.exit(errorCode);
     }));
-    int result = app_.run();
-    EXPECT_EQ(result, errorCode);
+    EXPECT_EQ(app_.run(), errorCode);
 }
