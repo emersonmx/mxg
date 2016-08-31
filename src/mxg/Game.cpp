@@ -24,7 +24,7 @@
 
 namespace mxg {
 
-void Game::changeState(State* state) {
+void Game::setState(State* state) {
     throwExceptionIfNull(state);
 
     if (state_ != nullptr) {

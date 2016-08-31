@@ -22,14 +22,14 @@
 #define MXG_GAME_HPP_
 
 #include "mxg/Application.hpp"
-#include "mxg/DefaultState.hpp"
+#include "mxg/State.hpp"
 
 namespace mxg {
 
 class Game : public Application {
     public:
-        State* state() { return state_; }
-        void changeState(State* state);
+        State* getState() { return state_; }
+        void setState(State* state);
         void clearState() { state_ = nullptr; }
 
     private:
