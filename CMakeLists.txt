@@ -1,5 +1,5 @@
 # Project settings
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.11)
 project(mxg)
 
 set(mxg_VERSION_MAJOR 0)
@@ -9,7 +9,7 @@ set(mxg_VERSION_REVISION 0)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 configure_file(
-    "${PROJECT_SOURCE_DIR}/src/mxg/Config.hpp.in"
+    "src/mxg/Config.hpp.in"
     "${PROJECT_BINARY_DIR}/Config.hpp"
 )
 
@@ -44,9 +44,8 @@ endif()
 include(FindPkgConfig)
 
 # Executable settings
-include_directories(${PROJECT_SOURCE_DIR}/src
+include_directories(src
     ${PROJECT_BINARY_DIR}
-    ${EXTRA_INCLUDES}
 )
 
 if (BUILD_SANDBOX)
@@ -62,6 +61,5 @@ add_library(${PROJECT_NAME}
     src/mxg/Game.cpp
 )
 
-target_link_libraries(${PROJECT_NAME}
-    ${EXTRA_LIBS}
-)
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(DIRECTORY src/ DESTINATION include)
