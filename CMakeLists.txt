@@ -62,4 +62,5 @@ add_library(${PROJECT_NAME}
 )
 
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(DIRECTORY src/ DESTINATION include)
+install(DIRECTORY src/ DESTINATION include
+    FILES_MATCHING PATTERN "*.hpp")
