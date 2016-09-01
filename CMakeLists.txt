@@ -41,7 +41,6 @@ if (WIN32)
 endif()
 
 # Includes and libraries settings
-include(FindPkgConfig)
 
 # Executable settings
 include_directories(src
