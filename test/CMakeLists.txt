@@ -13,28 +13,28 @@ ExternalProject_Add(
 ExternalProject_Get_Property(gtest source_dir binary_dir)
 
 add_library(libgtest IMPORTED STATIC GLOBAL)
-add_dependencies(libgtest gtest) 
+add_dependencies(libgtest gtest)
 set_target_properties(libgtest PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/googlemock/gtest/libgtest.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
 )
 
 add_library(libgtest_main IMPORTED STATIC GLOBAL)
-add_dependencies(libgtest_main gtest) 
+add_dependencies(libgtest_main gtest)
 set_target_properties(libgtest_main PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/googlemock/gtest/libgtest_main.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
 )
 
 add_library(libgmock IMPORTED STATIC GLOBAL)
-add_dependencies(libgmock gtest) 
+add_dependencies(libgmock gtest)
 set_target_properties(libgmock PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/googlemock/libgmock.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
 )
 
 add_library(libgmock_main IMPORTED STATIC GLOBAL)
-add_dependencies(libgmock_main gtest) 
+add_dependencies(libgmock_main gtest)
 set_target_properties(libgmock_main PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/googlemock/libgmock_main.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"

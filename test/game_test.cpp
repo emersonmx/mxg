@@ -31,11 +31,10 @@ class GameTest : public ::testing::Test {
             EXPECT_CALL(game_, tick())
                 .Times(AtMost(10));
 
-
             ON_CALL(game_, tick())
                 .WillByDefault(Invoke([&](){
                     game_.getState()->tick();
-                })); 
+                }));
         }
         virtual ~GameTest() {}
 
@@ -43,7 +42,7 @@ class GameTest : public ::testing::Test {
 };
 
 TEST_F(GameTest, CheckGetAndSetState) {
-    mxg::DefaultState state; 
+    mxg::DefaultState state;
     game_.setState(state);
     ASSERT_EQ(game_.getState(), &state);
 }
@@ -98,15 +97,15 @@ TEST_F(GameTest, RunOk) {
         .InSequence(stateSequence);
     EXPECT_CALL(state, destroy())
         .Times(1)
-        .InSequence(stateSequence); 
+        .InSequence(stateSequence);
     EXPECT_CALL(state, exit())
-        .Times(AnyNumber()); 
+        .Times(AnyNumber());
     ON_CALL(state, tick())
         .WillByDefault(Invoke([&](){
             game_.exit();
-        })); 
+        }));
 
-    state.create(); 
+    state.create();
 
     game_.setState(state);
     EXPECT_EQ(game_.run(), 0);
