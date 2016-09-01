@@ -29,12 +29,10 @@ namespace mxg {
 class Game : public Application {
     public:
         State* getState() { return state_; }
-        void setState(State* state);
-        void clearState() { state_ = nullptr; }
+        void setState(State& state);
+        void clearState();
 
     private:
-        void throwExceptionIfNull(State* state);
-
         State* state_{nullptr};
 };
 

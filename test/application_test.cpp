@@ -25,9 +25,7 @@ class ApplicationTest : public ::testing::Test {
 
             EXPECT_CALL(app_, tick())
                 .Times(AtMost(10))
-                .InSequence(mainLoop)
-                .WillOnce(Return())
-                .WillOnce(Return());
+                .InSequence(mainLoop);
 
             EXPECT_CALL(app_, destroy())
                 .Times(1)

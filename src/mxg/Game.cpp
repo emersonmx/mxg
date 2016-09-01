@@ -24,21 +24,20 @@
 
 namespace mxg {
 
-void Game::setState(State* state) {
-    throwExceptionIfNull(state);
-
+void Game::setState(State& state) {
     if (state_ != nullptr) {
         state_->exit();
     }
-    state->enter();
+    state.enter();
 
-    state_ = state;
+    state_ = &state;
 }
 
-void Game::throwExceptionIfNull(State* state) {
-    if (state == nullptr) {
-        throw std::invalid_argument("state can't be null.");
+void Game::clearState() {
+    if (state_ != nullptr) {
+        state_->exit();
     }
+    state_ = nullptr;
 }
 
 } /* namespace mxg */
