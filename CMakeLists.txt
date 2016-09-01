@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(mxg)
 
 set(mxg_VERSION_MAJOR 0)
-set(mxg_VERSION_MINOR 0)
+set(mxg_VERSION_MINOR 1)
 set(mxg_VERSION_REVISION 0)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
