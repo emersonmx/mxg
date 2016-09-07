@@ -7,11 +7,7 @@ set(mxg_VERSION_MINOR 1)
 set(mxg_VERSION_REVISION 0)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-configure_file(
-    "src/mxg/Config.hpp.in"
-    "${PROJECT_BINARY_DIR}/Config.hpp"
-)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 option(BUILD_TESTS "Build tests" OFF)
 
@@ -42,8 +38,6 @@ if (WIN32)
 endif()
 
 # Build settings
-include_directories("${PROJECT_BINARY_DIR}")
-
 add_subdirectory(src)
 
 if (BUILD_TESTS)
