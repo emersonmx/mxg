@@ -47,10 +47,6 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 add_subdirectory(src)
 
-if (BUILD_SANDBOX)
-    add_subdirectory(sandbox)
-endif()
-
 if (BUILD_TESTS)
     add_subdirectory(test)
 endif()
