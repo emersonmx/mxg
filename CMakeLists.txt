@@ -13,7 +13,6 @@ configure_file(
     "${PROJECT_BINARY_DIR}/Config.hpp"
 )
 
-option(BUILD_SANDBOX "Build sandbox code" OFF)
 option(BUILD_TESTS "Build tests" OFF)
 
 # Compiler settings
