@@ -26,33 +26,33 @@ class MockState : public mxg::State {
 };
 
 class GameTest : public ::testing::Test {
-    protected:
+    public:
         GameTest() {
-            EXPECT_CALL(game_, tick())
+            EXPECT_CALL(game, tick())
                 .Times(AtMost(10));
 
-            ON_CALL(game_, tick())
+            ON_CALL(game, tick())
                 .WillByDefault(Invoke([&](){
-                    game_.getState()->tick();
+                    game.getState()->tick();
                 }));
         }
         virtual ~GameTest() {}
 
-        MockGame game_;
+        MockGame game;
 };
 
 TEST_F(GameTest, CheckGetAndSetState) {
     mxg::DefaultState state;
-    game_.setState(state);
-    ASSERT_EQ(game_.getState(), &state);
+    game.setState(state);
+    ASSERT_EQ(game.getState(), &state);
 }
 
 TEST_F(GameTest, NullAfterClearState) {
     mxg::DefaultState state;
-    game_.setState(state);
-    ASSERT_EQ(game_.getState(), &state);
-    game_.clearState();
-    ASSERT_EQ(game_.getState(), nullptr);
+    game.setState(state);
+    ASSERT_EQ(game.getState(), &state);
+    game.clearState();
+    ASSERT_EQ(game.getState(), nullptr);
 }
 
 TEST_F(GameTest, JustCallTheEnterEventWhenItIsTheFirstState) {
@@ -61,7 +61,7 @@ TEST_F(GameTest, JustCallTheEnterEventWhenItIsTheFirstState) {
     EXPECT_CALL(state, enter())
         .Times(1);
 
-    game_.setState(state);
+    game.setState(state);
 }
 
 TEST_F(GameTest, CallEnterAndExit) {
@@ -78,8 +78,8 @@ TEST_F(GameTest, CallEnterAndExit) {
         .Times(1)
         .InSequence(sequence);
 
-    game_.setState(firstState);
-    game_.setState(secondState);
+    game.setState(firstState);
+    game.setState(secondState);
 }
 
 TEST_F(GameTest, RunOk) {
@@ -102,13 +102,13 @@ TEST_F(GameTest, RunOk) {
         .Times(AnyNumber());
     ON_CALL(state, tick())
         .WillByDefault(Invoke([&](){
-            game_.exit();
+            game.exit();
         }));
 
     state.create();
 
-    game_.setState(state);
-    EXPECT_EQ(game_.run(), 0);
+    game.setState(state);
+    EXPECT_EQ(game.run(), 0);
 
     state.destroy();
 }

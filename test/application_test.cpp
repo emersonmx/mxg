@@ -16,54 +16,54 @@ class MockApplication : public mxg::Application {
 };
 
 class ApplicationTest : public ::testing::Test {
-    protected:
+    public:
         ApplicationTest() {
             Sequence mainLoop;
-            EXPECT_CALL(app_, create())
+            EXPECT_CALL(app, create())
                 .Times(1)
                 .InSequence(mainLoop);
 
-            EXPECT_CALL(app_, tick())
+            EXPECT_CALL(app, tick())
                 .Times(AtMost(10))
                 .InSequence(mainLoop);
 
-            EXPECT_CALL(app_, destroy())
+            EXPECT_CALL(app, destroy())
                 .Times(1)
                 .InSequence(mainLoop);
 
-            ON_CALL(app_, tick())
+            ON_CALL(app, tick())
                 .WillByDefault(Invoke([&](){
-                    app_.exit();
+                    app.exit();
                 }));
         }
         virtual ~ApplicationTest() {}
 
-        MockApplication app_;
+        MockApplication app;
 };
 
 TEST_F(ApplicationTest, RunOk) {
-    EXPECT_EQ(app_.run(), 0);
+    EXPECT_EQ(app.run(), 0);
 }
 
 TEST_F(ApplicationTest, RunHasError) {
     int errorCode = 1;
-    ON_CALL(app_, tick()).WillByDefault(Invoke([&](){
-        app_.exit(errorCode);
+    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
+        app.exit(errorCode);
     }));
-    EXPECT_EQ(app_.run(), errorCode);
+    EXPECT_EQ(app.run(), errorCode);
 }
 
 TEST_F(ApplicationTest, SkipMainLoop) {
-    ON_CALL(app_, create()).WillByDefault(Invoke([&](){
-        app_.exit();
+    ON_CALL(app, create()).WillByDefault(Invoke([&](){
+        app.exit();
     }));
-    EXPECT_EQ(app_.run(), 0);
+    EXPECT_EQ(app.run(), 0);
 }
 
 TEST_F(ApplicationTest, SkipMainLoopWithError) {
     int errorCode = 1;
-    ON_CALL(app_, create()).WillByDefault(Invoke([&](){
-        app_.exit(errorCode);
+    ON_CALL(app, create()).WillByDefault(Invoke([&](){
+        app.exit(errorCode);
     }));
-    EXPECT_EQ(app_.run(), errorCode);
+    EXPECT_EQ(app.run(), errorCode);
 }
