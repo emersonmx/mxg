@@ -1,5 +1,6 @@
 # Setup
 find_package(Threads REQUIRED)
+
 include(ExternalProject)
 
 ExternalProject_Add(
@@ -40,10 +41,16 @@ set_target_properties(libgmock_main PROPERTIES
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
 )
 
-include_directories("${source_dir}/googletest/include"
-                    "${source_dir}/googlemock/include")
+include_directories(
+    "${source_dir}/googletest/include"
+    "${source_dir}/googlemock/include"
+)
 
 # Tests
+include_directories(
+    "${PROJECT_SOURCE_DIR}/src"
+)
+
 file(GLOB SRCS *.cpp)
 
 add_executable(mxg_tests ${SRCS})

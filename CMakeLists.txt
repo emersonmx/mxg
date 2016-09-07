@@ -17,9 +17,11 @@ option(BUILD_SANDBOX "Build sandbox code" OFF)
 option(BUILD_TESTS "Build tests" OFF)
 
 # Compiler settings
-if (CMAKE_BUILD_TYPE STREQUAL "")
-    set(CMAKE_BUILD_TYPE Debug)
-endif()
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING
+        "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
+        FORCE)
+endif(NOT CMAKE_BUILD_TYPE)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic")
@@ -40,12 +42,10 @@ if (WIN32)
     set(CMAKE_EXE_LINKER_FLAGS "-Wl,--subsystem,windows")
 endif()
 
-# Includes and libraries settings
+# Build settings
+include_directories("${PROJECT_BINARY_DIR}")
 
-# Executable settings
-include_directories(src
-    ${PROJECT_BINARY_DIR}
-)
+add_subdirectory(src)
 
 if (BUILD_SANDBOX)
     add_subdirectory(sandbox)
@@ -54,12 +54,3 @@ endif()
 if (BUILD_TESTS)
     add_subdirectory(test)
 endif()
-
-add_library(${PROJECT_NAME}
-    src/mxg/Application.cpp
-    src/mxg/Game.cpp
-)
-
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(DIRECTORY src/ DESTINATION include
-    FILES_MATCHING PATTERN "*.hpp")
