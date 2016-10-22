@@ -6,8 +6,8 @@ configure_file(
 
 # Targets
 add_library(${PROJECT_NAME}
-    mxg/Application.cpp
-    mxg/Game.cpp
+    mxg/app/Application.cpp
+    mxg/app/Game.cpp
 )
 
 # Install

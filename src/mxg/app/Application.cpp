@@ -18,23 +18,30 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#ifndef MXG_DEFAULTSTATE_HPP_
-#define MXG_DEFAULTSTATE_HPP_
-
-#include "mxg/State.hpp"
+#include "mxg/app/Application.hpp"
 
 namespace mxg {
+namespace app {
 
-class DefaultState: public State {
-    public:
-        void create() override {}
-        void destroy() override {}
+int Application::run() {
+    create();
 
-        void enter() override {}
-        void exit() override {}
+    while (running_) {
+        tick();
+    }
 
-        void tick() override {}
-};
+    destroy();
+    return errorCode_;
+}
 
+void Application::exit() {
+    exit(0);
+}
+
+void Application::exit(const int errorCode) {
+    errorCode_ = errorCode;
+    running_ = false;
+}
+
+} /* namespace app */
 } /* namespace mxg */
-#endif /* MXG_DEFAULTSTATE_HPP_ */

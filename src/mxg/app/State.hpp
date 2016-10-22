@@ -18,10 +18,11 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#ifndef MXG_STATE_HPP_
-#define MXG_STATE_HPP_
+#ifndef MXG_APP_STATE_HPP_
+#define MXG_APP_STATE_HPP_
 
 namespace mxg {
+namespace app {
 
 class State {
     public:
@@ -36,5 +37,6 @@ class State {
         virtual void tick() = 0;
 };
 
+} /* namespace app */
 } /* namespace mxg */
-#endif /* MXG_STATE_HPP_ */
+#endif /* MXG_APP_STATE_HPP_ */
