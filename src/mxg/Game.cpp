@@ -18,30 +18,26 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#include "mxg/app/Application.hpp"
+#include "mxg/Game.hpp"
+
+#include <stdexcept>
 
 namespace mxg {
-namespace app {
 
-int Application::run() {
-    create();
-
-    while (running_) {
-        tick();
+void Game::setState(State& state) {
+    if (state_ != nullptr) {
+        state_->exit();
     }
+    state.enter();
 
-    destroy();
-    return errorCode_;
+    state_ = &state;
 }
 
-void Application::exit() {
-    exit(0);
+void Game::clearState() {
+    if (state_ != nullptr) {
+        state_->exit();
+    }
+    state_ = nullptr;
 }
 
-void Application::exit(const int errorCode) {
-    errorCode_ = errorCode;
-    running_ = false;
-}
-
-} /* namespace app */
 } /* namespace mxg */

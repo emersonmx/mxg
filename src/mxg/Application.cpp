@@ -18,30 +18,28 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#ifndef MXG_APP_APPLICATION_HPP_
-#define MXG_APP_APPLICATION_HPP_
+#include "mxg/Application.hpp"
 
 namespace mxg {
-namespace app {
 
-class Application {
-    public:
-        virtual ~Application() {}
+int Application::run() {
+    create();
 
-        int run();
-        void exit();
-        void exit(const int errorCode);
+    while (running_) {
+        tick();
+    }
 
-    protected:
-        virtual void create() {}
-        virtual void destroy() {}
-        virtual void tick() {}
+    destroy();
+    return errorCode_;
+}
 
-    private:
-        int errorCode_{0};
-        bool running_{true};
-};
+void Application::exit() {
+    exit(0);
+}
 
-} /* namespace app */
+void Application::exit(const int errorCode) {
+    errorCode_ = errorCode;
+    running_ = false;
+}
+
 } /* namespace mxg */
-#endif /* MXG_APP_APPLICATION_HPP_ */
