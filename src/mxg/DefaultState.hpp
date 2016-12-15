@@ -21,7 +21,7 @@
 #ifndef MXG_DEFAULTSTATE_HPP_
 #define MXG_DEFAULTSTATE_HPP_
 
-#include "mxg/State.hpp"
+#include <mxg/State.hpp>
 
 namespace mxg {
 
@@ -36,5 +36,5 @@ class DefaultState: public State {
         void tick() override {}
 };
 
-} /* namespace mxg */ 
+} /* namespace mxg */
 #endif /* MXG_DEFAULTSTATE_HPP_ */
