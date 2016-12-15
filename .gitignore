@@ -1,6 +1,7 @@
 build
 tags
 .vimproject
+.session.vim
 .ycm_extra_conf.py
 .settings/
 .project
