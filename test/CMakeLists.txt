@@ -47,10 +47,6 @@ include_directories(
 )
 
 # Tests
-include_directories(
-    "${PROJECT_SOURCE_DIR}/src"
-)
-
 file(GLOB SRCS *.cpp)
 
 add_executable(mxg_tests ${SRCS})
