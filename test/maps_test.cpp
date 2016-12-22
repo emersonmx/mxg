@@ -3,6 +3,7 @@
 #include "mxg/maps/Properties.hpp"
 #include "mxg/maps/Object.hpp"
 #include "mxg/maps/objects/Circle.hpp"
+#include "mxg/maps/objects/Ellipse.hpp"
 
 struct Color {
     int r, g, b;
@@ -10,6 +11,10 @@ struct Color {
 
 struct Circle {
     int x, y, radius;
+};
+
+struct Ellipse {
+    int x, y, width, height;
 };
 
 TEST(MapTest, UseProperties) {
@@ -51,4 +56,18 @@ TEST(MapTest, UseCircleObject) {
     ASSERT_EQ(32, c.circle.x);
     ASSERT_EQ(64, c.circle.y);
     ASSERT_EQ(100, c.circle.radius);
+}
+
+TEST(MapTest, UseEllipseObject) {
+    mxg::maps::objects::Ellipse<Color, Ellipse> e;
+
+    e.ellipse.x = 32;
+    e.ellipse.y = 64;
+    e.ellipse.width = 128;
+    e.ellipse.height = 256;
+
+    ASSERT_EQ(32, e.ellipse.x);
+    ASSERT_EQ(64, e.ellipse.y);
+    ASSERT_EQ(128, e.ellipse.width);
+    ASSERT_EQ(256, e.ellipse.height);
 }
