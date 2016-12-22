@@ -1,6 +1,7 @@
 #ifndef MXG_MATH_CIRCLE_HPP_
 #define MXG_MATH_CIRCLE_HPP_
 
+#include "mxg/math/Vector2.hpp"
 #include "mxg/math/Utils.hpp"
 
 namespace mxg {
@@ -14,15 +15,12 @@ class Circle {
         Circle(const T t_x, const T t_y, const T t_radius)
             : x(t_x), y(t_y), radius(t_radius) {}
 
-        void set(const T t_x, const T t_y, const T t_radius) {
-            x = t_x;
-            y = t_y;
-            radius = t_radius;
+        T getCircumference() const {
+            return radius * mxg::math::utils::PI2;
         }
 
-        void setPosition(const T t_x, const T t_y) {
-            x = t_x;
-            y = t_y;
+        T getArea() const {
+            return radius*radius * mxg::math::utils::PI;
         }
 
         bool contains(const T t_x, const T t_y) const {
@@ -50,14 +48,6 @@ class Circle {
             T distance = dx*dx + dy*dy;
             T radiusSum = radius + circle.radius;
             return distance < radiusSum*radiusSum;
-        }
-
-        T circumference() const {
-            return radius * mxg::math::utils::PI2;
-        }
-
-        T area() const {
-            return radius*radius * mxg::math::utils::PI;
         }
 
         T x = T();

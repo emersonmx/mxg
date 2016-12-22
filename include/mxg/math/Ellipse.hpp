@@ -3,6 +3,8 @@
 
 #include <cmath>
 
+#include "mxg/math/Vector2.hpp"
+
 namespace mxg {
 namespace math {
 
@@ -14,31 +16,7 @@ class Ellipse {
         Ellipse(const T t_x, const T t_y, const T t_width, const T t_height)
             : x(t_x), y(t_y), width(t_width), height(t_height) {}
 
-        void set(const T t_x, const T t_y, const T t_width, const T t_height) {
-            x = t_x;
-            y = t_y;
-            width = t_width;
-            height = t_height;
-        }
-
-        void setPosition(const T t_x, const T t_y) {
-            x = t_x;
-            y = t_y;
-        }
-
-        void setSize(const T t_width, const T t_height) {
-            width = t_width;
-            height = t_height;
-        }
-
-        bool contains(const T t_x, const T t_y) const {
-            const T dx = t_x - x;
-            const T dy = t_y - y;
-            return ((dx*dx) / (width*0.5f * width*0.5f) + (dy*dy) /
-                    (height*0.5f * height*0.5f)) <= 1.0f;
-        }
-
-        T circumference() const {
+        T getCircumference() const {
             T a = width / 2;
             T b = height / 2;
             if (a * 3 > b || b * 3 > a) {
@@ -49,8 +27,15 @@ class Ellipse {
             }
         }
 
-        T area() const {
+        T getArea() const {
             return mxg::math::utils::PI * (width * height) / 4;
+        }
+
+        bool contains(const T t_x, const T t_y) const {
+            const T dx = t_x - x;
+            const T dy = t_y - y;
+            return ((dx*dx) / (width*0.5f * width*0.5f) + (dy*dy) /
+                    (height*0.5f * height*0.5f)) <= 1.0f;
         }
 
         T x = T();

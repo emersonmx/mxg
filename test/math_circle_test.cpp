@@ -17,21 +17,6 @@ TEST(MathCircleTest, UseCircle) {
     ASSERT_FLOAT_EQ(10, c2.x);
     ASSERT_FLOAT_EQ(20, c2.y);
     ASSERT_FLOAT_EQ(100, c2.radius);
-
-    Circle<int> c3;
-    c3.set(1, 2, 3);
-
-    ASSERT_FLOAT_EQ(1, c3.x);
-    ASSERT_FLOAT_EQ(2, c3.y);
-    ASSERT_FLOAT_EQ(3, c3.radius);
-
-    Circle<int> c4;
-    c4.setPosition(1, 2);
-    c4.radius = 3;
-
-    ASSERT_FLOAT_EQ(1, c4.x);
-    ASSERT_FLOAT_EQ(2, c4.y);
-    ASSERT_FLOAT_EQ(3, c4.radius);
 }
 
 TEST(MathCircleTest, ContainCircles) {
@@ -63,8 +48,8 @@ TEST(MathCircleTest, GetCircleProperties) {
     float expectedArea = 10*10*utils::PI;
     float expectedCircumference = 10*utils::PI2;
 
-    ASSERT_FLOAT_EQ(expectedArea, c.area());
-    ASSERT_FLOAT_EQ(expectedCircumference, c.circumference());
+    ASSERT_FLOAT_EQ(expectedArea, c.getArea());
+    ASSERT_FLOAT_EQ(expectedCircumference, c.getCircumference());
 }
 
 TEST(MathCircleTest, UseCircleOperatos) {

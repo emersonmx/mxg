@@ -21,23 +21,6 @@ TEST(MathEllipseTest, UseEllipse) {
     ASSERT_FLOAT_EQ(20, c2.y);
     ASSERT_FLOAT_EQ(100, c2.width);
     ASSERT_FLOAT_EQ(200, c2.height);
-
-    Ellipse<int> c3;
-    c3.set(1, 2, 3, 4);
-
-    ASSERT_FLOAT_EQ(1, c3.x);
-    ASSERT_FLOAT_EQ(2, c3.y);
-    ASSERT_FLOAT_EQ(3, c3.width);
-    ASSERT_FLOAT_EQ(4, c3.height);
-
-    Ellipse<int> c4;
-    c4.setPosition(1, 2);
-    c4.setSize(4, 5);
-
-    ASSERT_FLOAT_EQ(1, c4.x);
-    ASSERT_FLOAT_EQ(2, c4.y);
-    ASSERT_FLOAT_EQ(4, c4.width);
-    ASSERT_FLOAT_EQ(5, c4.height);
 }
 
 TEST(MathEllipseTest, ContainEllipses) {
@@ -52,8 +35,8 @@ TEST(MathEllipseTest, GetEllipseProperties) {
     float expectedArea = 157.07964f;
     float expectedCircumference = 48.4421f;
 
-    ASSERT_FLOAT_EQ(expectedArea, c.area());
-    ASSERT_FLOAT_EQ(expectedCircumference, c.circumference());
+    ASSERT_FLOAT_EQ(expectedArea, c.getArea());
+    ASSERT_FLOAT_EQ(expectedCircumference, c.getCircumference());
 }
 
 TEST(MathEllipseTest, UseEllipseOperatos) {
