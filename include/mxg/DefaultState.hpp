@@ -21,7 +21,7 @@
 #ifndef MXG_DEFAULTSTATE_HPP_
 #define MXG_DEFAULTSTATE_HPP_
 
-#include <mxg/State.hpp>
+#include "mxg/State.hpp"
 
 namespace mxg {
 

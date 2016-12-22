@@ -21,8 +21,8 @@
 #ifndef MXG_GAME_HPP_
 #define MXG_GAME_HPP_
 
-#include <mxg/Application.hpp>
-#include <mxg/State.hpp>
+#include "mxg/Application.hpp"
+#include "mxg/State.hpp"
 
 namespace mxg {
 
