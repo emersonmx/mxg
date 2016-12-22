@@ -37,19 +37,10 @@ TEST(MathCircleTest, OverlapCircles) {
     Circle<int> c4{0, 0, 5};
     Circle<int> c5{0, 0, 20};
 
-    ASSERT_TRUE(c1.overlaps(c2));
-    ASSERT_FALSE(c1.overlaps(c3));
-    ASSERT_TRUE(c1.overlaps(c4));
-    ASSERT_TRUE(c1.overlaps(c5));
-}
-
-TEST(MathCircleTest, GetCircleProperties) {
-    Circle<float> c{0, 0, 10};
-    float expectedArea = 10*10*utils::PI;
-    float expectedCircumference = 10*utils::PI2;
-
-    ASSERT_FLOAT_EQ(expectedArea, c.getArea());
-    ASSERT_FLOAT_EQ(expectedCircumference, c.getCircumference());
+    ASSERT_TRUE(c1.intersects(c2));
+    ASSERT_FALSE(c1.intersects(c3));
+    ASSERT_TRUE(c1.intersects(c4));
+    ASSERT_TRUE(c1.intersects(c5));
 }
 
 TEST(MathCircleTest, UseCircleOperatos) {

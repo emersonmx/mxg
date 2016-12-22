@@ -15,14 +15,6 @@ class Circle {
         Circle(const T t_x, const T t_y, const T t_radius)
             : x(t_x), y(t_y), radius(t_radius) {}
 
-        T getCircumference() const {
-            return radius * mxg::math::utils::PI2;
-        }
-
-        T getArea() const {
-            return radius*radius * mxg::math::utils::PI;
-        }
-
         bool contains(const T t_x, const T t_y) const {
             const T dx = x - t_x;
             const T dy = y - t_y;
@@ -42,7 +34,7 @@ class Circle {
                 && (dst < radiusSum * radiusSum);
         }
 
-        bool overlaps(const Circle<T>& circle) const {
+        bool intersects(const Circle<T>& circle) const {
             T dx = x - circle.x;
             T dy = y - circle.y;
             T distance = dx*dx + dy*dy;
@@ -50,9 +42,9 @@ class Circle {
             return distance < radiusSum*radiusSum;
         }
 
-        T x = T();
-        T y = T();
-        T radius = T();
+        T x{};
+        T y{};
+        T radius{};
 };
 
 template<typename T>

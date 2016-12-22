@@ -16,21 +16,6 @@ class Ellipse {
         Ellipse(const T t_x, const T t_y, const T t_width, const T t_height)
             : x(t_x), y(t_y), width(t_width), height(t_height) {}
 
-        T getCircumference() const {
-            T a = width / 2;
-            T b = height / 2;
-            if (a * 3 > b || b * 3 > a) {
-                return mxg::math::utils::PI *
-                    ((3 * (a + b)) - sqrt((3 * a + b) * (a + 3 * b)));
-            } else {
-                return mxg::math::utils::PI2 * sqrt((a * a + b * b) / 2);
-            }
-        }
-
-        T getArea() const {
-            return mxg::math::utils::PI * (width * height) / 4;
-        }
-
         bool contains(const T t_x, const T t_y) const {
             const T dx = t_x - x;
             const T dy = t_y - y;
@@ -38,10 +23,10 @@ class Ellipse {
                     (height*0.5f * height*0.5f)) <= 1.0f;
         }
 
-        T x = T();
-        T y = T();
-        T width = T();
-        T height = T();
+        T x{};
+        T y{};
+        T width{};
+        T height{};
 };
 
 template<typename T>

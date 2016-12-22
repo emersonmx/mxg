@@ -30,15 +30,6 @@ TEST(MathEllipseTest, ContainEllipses) {
     ASSERT_FALSE(c.contains(0, 20));
 }
 
-TEST(MathEllipseTest, GetEllipseProperties) {
-    Ellipse<float> c{0, 0, 10, 20};
-    float expectedArea = 157.07964f;
-    float expectedCircumference = 48.4421f;
-
-    ASSERT_FLOAT_EQ(expectedArea, c.getArea());
-    ASSERT_FLOAT_EQ(expectedCircumference, c.getCircumference());
-}
-
 TEST(MathEllipseTest, UseEllipseOperatos) {
     Ellipse<int> c1{0, 0, 10, 20};
     Ellipse<int> c2{0, 0, 10, 20};
