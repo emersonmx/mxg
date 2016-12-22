@@ -30,7 +30,6 @@ TEST(GraphicsColorTest, CompareColors) {
     Color crimson{0xDC143CFF};
     Color first = crimson;
     Color indigo{0x4B0082FF};
-    Color second = indigo;
     Color gray{32, 32, 32};
     Color expected{};
     Color aux{};

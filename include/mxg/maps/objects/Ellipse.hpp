@@ -7,8 +7,8 @@ namespace mxg {
 namespace maps {
 namespace objects {
 
-template<class ColorType, class EllipseType>
-struct Ellipse : mxg::maps::Object<ColorType> {
+template<class EllipseType>
+struct Ellipse : mxg::maps::Object {
     EllipseType ellipse{};
 };
 

@@ -7,8 +7,8 @@ namespace mxg {
 namespace maps {
 namespace objects {
 
-template<class ColorType, class CircleType>
-struct Circle : mxg::maps::Object<ColorType> {
+template<class CircleType>
+struct Circle : mxg::maps::Object {
     CircleType circle{};
 };
 

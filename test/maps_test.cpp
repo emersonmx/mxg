@@ -1,13 +1,11 @@
 #include "gtest/gtest.h"
 
+#include "mxg/graphics/Color.hpp"
+
 #include "mxg/maps/Properties.hpp"
 #include "mxg/maps/Object.hpp"
 #include "mxg/maps/objects/Circle.hpp"
 #include "mxg/maps/objects/Ellipse.hpp"
-
-struct Color {
-    int r, g, b;
-};
 
 struct Circle {
     int x, y, radius;
@@ -32,7 +30,7 @@ TEST(MapTest, UseProperties) {
 }
 
 TEST(MapTest, UseObject) {
-    mxg::maps::Object<Color> o;
+    mxg::maps::Object o;
     o.name = "Test";
     o.opacity = 0.5f;
     o.properties["position"] = "128,64";
@@ -47,7 +45,7 @@ TEST(MapTest, UseObject) {
 }
 
 TEST(MapTest, UseCircleObject) {
-    mxg::maps::objects::Circle<Color, Circle> c;
+    mxg::maps::objects::Circle<Circle> c;
 
     c.circle.x = 32;
     c.circle.y = 64;
@@ -59,7 +57,7 @@ TEST(MapTest, UseCircleObject) {
 }
 
 TEST(MapTest, UseEllipseObject) {
-    mxg::maps::objects::Ellipse<Color, Ellipse> e;
+    mxg::maps::objects::Ellipse<Ellipse> e;
 
     e.ellipse.x = 32;
     e.ellipse.y = 64;

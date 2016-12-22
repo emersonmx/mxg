@@ -1,18 +1,18 @@
 #ifndef MXG_MAPS_OBJECT_HPP_
 #define MXG_MAPS_OBJECT_HPP_
 
+#include "mxg/graphics/Color.hpp"
 #include "mxg/maps/Properties.hpp"
 
 namespace mxg {
 namespace maps {
 
-template<class ColorType>
 struct Object {
     std::string name = "";
     float opacity = 1.0f;
     bool visible = true;
     Properties properties{};
-    ColorType color{};
+    mxg::graphics::Color color = mxg::graphics::Color::White;
 };
 
 } /* namespace maps */
