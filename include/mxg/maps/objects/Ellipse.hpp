@@ -2,14 +2,15 @@
 #define MXG_MAPS_OBJECTS_ELLIPSE_HPP_
 
 #include "mxg/maps/Object.hpp"
+#include "mxg/math/Ellipse.hpp"
 
 namespace mxg {
 namespace maps {
 namespace objects {
 
-template<class EllipseType>
+template<typename T>
 struct Ellipse : mxg::maps::Object {
-    EllipseType ellipse{};
+    mxg::math::Ellipse<T> ellipse{};
 };
 
 } /* namespace objects */

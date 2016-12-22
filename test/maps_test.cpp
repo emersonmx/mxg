@@ -53,7 +53,7 @@ TEST(MapTest, UseCircleObject) {
 }
 
 TEST(MapTest, UseEllipseObject) {
-    mxg::maps::objects::Ellipse<Ellipse> e;
+    mxg::maps::objects::Ellipse<int> e;
 
     e.ellipse.x = 32;
     e.ellipse.y = 64;
