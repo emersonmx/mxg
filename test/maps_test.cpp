@@ -2,9 +2,14 @@
 
 #include "mxg/maps/Properties.hpp"
 #include "mxg/maps/Object.hpp"
+#include "mxg/maps/objects/Circle.hpp"
 
 struct Color {
     int r, g, b;
+};
+
+struct Circle {
+    int x, y, radius;
 };
 
 TEST(MapTest, UseProperties) {
@@ -34,4 +39,16 @@ TEST(MapTest, UseObject) {
     ASSERT_EQ(32, o.color.r);
     ASSERT_EQ(64, o.color.g);
     ASSERT_EQ(128, o.color.b);
+}
+
+TEST(MapTest, UseCircleObject) {
+    mxg::maps::objects::Circle<Color, Circle> c;
+
+    c.circle.x = 32;
+    c.circle.y = 64;
+    c.circle.radius = 100;
+
+    ASSERT_EQ(32, c.circle.x);
+    ASSERT_EQ(64, c.circle.y);
+    ASSERT_EQ(100, c.circle.radius);
 }
