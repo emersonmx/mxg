@@ -2,6 +2,8 @@
 add_library(${PROJECT_NAME}
     mxg/Application.cpp
     mxg/Game.cpp
+
+    mxg/graphics/Color.cpp
 )
 
 # Install
