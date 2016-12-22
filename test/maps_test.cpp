@@ -6,6 +6,7 @@
 #include "mxg/maps/Object.hpp"
 #include "mxg/maps/objects/Circle.hpp"
 #include "mxg/maps/objects/Ellipse.hpp"
+#include "mxg/maps/objects/Rectangle.hpp"
 
 struct Ellipse {
     int x, y, width, height;
@@ -64,4 +65,18 @@ TEST(MapTest, UseEllipseObject) {
     ASSERT_EQ(64, e.ellipse.y);
     ASSERT_EQ(128, e.ellipse.width);
     ASSERT_EQ(256, e.ellipse.height);
+}
+
+TEST(MapTest, UseRectangleObject) {
+    mxg::maps::objects::Rectangle<int> r;
+
+    r.rectangle.left = 32;
+    r.rectangle.top = 64;
+    r.rectangle.width = 128;
+    r.rectangle.height = 256;
+
+    ASSERT_EQ(32, r.rectangle.left);
+    ASSERT_EQ(64, r.rectangle.top);
+    ASSERT_EQ(128, r.rectangle.width);
+    ASSERT_EQ(256, r.rectangle.height);
 }
