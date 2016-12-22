@@ -18,10 +18,11 @@ const Color Color::Transparent(0, 0, 0, 0);
 Color::Color()
     : r(0), g(0), b(0), a(255) {}
 
-Color::Color(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint8_t alpha)
+Color::Color(const std::uint8_t red, const std::uint8_t green,
+             const std::uint8_t blue, const std::uint8_t alpha)
     : r(red), g(green), b(blue), a(alpha) {}
 
-Color::Color(std::uint32_t color)
+Color::Color(const std::uint32_t color)
     : r((color & 0xff000000) >> 24),
       g((color & 0x00ff0000) >> 16),
       b((color & 0x0000ff00) >> 8 ),

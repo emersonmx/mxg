@@ -9,8 +9,9 @@ namespace graphics {
 class Color {
     public:
         Color();
-        Color(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint8_t alpha = 255);
-        explicit Color(std::uint32_t color);
+        Color(const std::uint8_t red, const std::uint8_t green,
+              const std::uint8_t blue, const std::uint8_t alpha = 255);
+        explicit Color(const std::uint32_t color);
 
         std::uint32_t toInteger() const;
 
