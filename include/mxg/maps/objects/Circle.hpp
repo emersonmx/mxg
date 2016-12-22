@@ -2,14 +2,15 @@
 #define MXG_MAPS_OBJECTS_CIRCLE_HPP_
 
 #include "mxg/maps/Object.hpp"
+#include "mxg/math/Circle.hpp"
 
 namespace mxg {
 namespace maps {
 namespace objects {
 
-template<class CircleType>
+template<typename T>
 struct Circle : mxg::maps::Object {
-    CircleType circle{};
+    mxg::math::Circle<T> circle{};
 };
 
 } /* namespace objects */

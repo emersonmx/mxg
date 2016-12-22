@@ -7,10 +7,6 @@
 #include "mxg/maps/objects/Circle.hpp"
 #include "mxg/maps/objects/Ellipse.hpp"
 
-struct Circle {
-    int x, y, radius;
-};
-
 struct Ellipse {
     int x, y, width, height;
 };
@@ -45,7 +41,7 @@ TEST(MapTest, UseObject) {
 }
 
 TEST(MapTest, UseCircleObject) {
-    mxg::maps::objects::Circle<Circle> c;
+    mxg::maps::objects::Circle<int> c;
 
     c.circle.x = 32;
     c.circle.y = 64;
