@@ -41,29 +41,48 @@ class ApplicationTest : public ::testing::Test {
         MockApplication app;
 };
 
-TEST_F(ApplicationTest, RunOk) {
+TEST_F(ApplicationTest, RunApplicationSuccessfully) {
     EXPECT_EQ(app.run(), 0);
 }
 
-TEST_F(ApplicationTest, RunHasError) {
-    int errorCode = 1;
-    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
-        app.exit(errorCode);
-    }));
-    EXPECT_EQ(app.run(), errorCode);
-}
-
-TEST_F(ApplicationTest, SkipMainLoop) {
+TEST_F(ApplicationTest, ExitSuccessfullyInCreate) {
     ON_CALL(app, create()).WillByDefault(Invoke([&](){
         app.exit();
     }));
     EXPECT_EQ(app.run(), 0);
 }
 
-TEST_F(ApplicationTest, SkipMainLoopWithError) {
-    int errorCode = 1;
+TEST_F(ApplicationTest, ExitWithErrorInCreate) {
     ON_CALL(app, create()).WillByDefault(Invoke([&](){
-        app.exit(errorCode);
+        app.exit(1);
     }));
-    EXPECT_EQ(app.run(), errorCode);
+    EXPECT_EQ(app.run(), 1);
+}
+
+TEST_F(ApplicationTest, ExitSuccessfullyInTick) {
+    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
+        app.exit(0);
+    }));
+    EXPECT_EQ(app.run(), 0);
+}
+
+TEST_F(ApplicationTest, ExitWithErrorInTick) {
+    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
+        app.exit(1);
+    }));
+    EXPECT_EQ(app.run(), 1);
+}
+
+TEST_F(ApplicationTest, ExitSuccessfullyInDestroy) {
+    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
+        app.exit(0);
+    }));
+    EXPECT_EQ(app.run(), 0);
+}
+
+TEST_F(ApplicationTest, ExitWithErrorInDestroy) {
+    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
+        app.exit(1);
+    }));
+    EXPECT_EQ(app.run(), 1);
 }
