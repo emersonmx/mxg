@@ -43,6 +43,10 @@ TEST_F(GameTest, SetState) {
     ASSERT_EQ(game.getState(), &state);
 }
 
+TEST_F(GameTest, DontThrowErrorWhenNullState) {
+    game.tick();
+}
+
 TEST_F(GameTest, OnSetStateCallEnter) {
     MockState state;
 
