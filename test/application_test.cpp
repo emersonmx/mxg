@@ -1,13 +1,13 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 
-#include "mxg/Application.hpp"
+#include "mxg/application/Application.hpp"
 
 using ::testing::AnyNumber;
 using ::testing::Invoke;
 using ::testing::Sequence;
 
-class MockApplication : public mxg::Application {
+class MockApplication : public mxg::application::Application {
     public:
         MOCK_METHOD0(create, void());
         MOCK_METHOD0(destroy, void());

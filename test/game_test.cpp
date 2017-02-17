@@ -1,20 +1,20 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 
-#include "mxg/DefaultState.hpp"
-#include "mxg/Game.hpp"
+#include "mxg/application/DefaultState.hpp"
+#include "mxg/application/Game.hpp"
 
 using ::testing::AnyNumber;
 using ::testing::AtLeast;
 using ::testing::Invoke;
 using ::testing::Sequence;
 
-class MockGame : public mxg::Game {
+class MockGame : public mxg::application::Game {
     public:
         MOCK_METHOD0(tick, void());
 };
 
-class MockState : public mxg::State {
+class MockState : public mxg::application::State {
     public:
         MOCK_METHOD0(enter, void());
         MOCK_METHOD0(exit, void());
@@ -38,13 +38,13 @@ class GameTest : public ::testing::Test {
 };
 
 TEST_F(GameTest, SetState) {
-    mxg::DefaultState state;
+    mxg::application::DefaultState state;
     game.setState(state);
     ASSERT_EQ(game.getState(), &state);
 }
 
 TEST_F(GameTest, OnClearStateDefaultsToNull) {
-    mxg::DefaultState state;
+    mxg::application::DefaultState state;
     game.setState(state);
     ASSERT_EQ(game.getState(), &state);
     game.clearState();
