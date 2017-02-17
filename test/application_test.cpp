@@ -4,6 +4,7 @@
 #include "mxg/Application.hpp"
 
 using ::testing::AtMost;
+using ::testing::AtLeast;
 using ::testing::Invoke;
 using ::testing::Sequence;
 using ::testing::Return;
@@ -24,17 +25,12 @@ class ApplicationTest : public ::testing::Test {
                 .InSequence(mainLoop);
 
             EXPECT_CALL(app, tick())
-                .Times(AtMost(10))
+                .Times(AtLeast(0))
                 .InSequence(mainLoop);
 
             EXPECT_CALL(app, destroy())
                 .Times(1)
                 .InSequence(mainLoop);
-
-            ON_CALL(app, tick())
-                .WillByDefault(Invoke([&](){
-                    app.exit();
-                }));
         }
         virtual ~ApplicationTest() {}
 
@@ -42,6 +38,14 @@ class ApplicationTest : public ::testing::Test {
 };
 
 TEST_F(ApplicationTest, RunApplicationSuccessfully) {
+    int count = 0;
+    ON_CALL(app, tick()).WillByDefault(Invoke([&](){
+        if (count > 10) {
+            app.exit();
+        }
+        count++;
+    }));
+
     EXPECT_EQ(app.run(), 0);
 }
 
