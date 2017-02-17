@@ -27,14 +27,11 @@ class State {
     public:
         virtual ~State() {}
 
-        virtual void create() = 0;
-        virtual void destroy() = 0;
-
         virtual void enter() = 0;
         virtual void exit() = 0;
 
         virtual void tick() = 0;
 };
 
-} /* namespace mxg */ 
+} /* namespace mxg */
 #endif /* MXG_STATE_HPP_ */

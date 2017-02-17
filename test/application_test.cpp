@@ -3,11 +3,9 @@
 
 #include "mxg/Application.hpp"
 
-using ::testing::AtMost;
-using ::testing::AtLeast;
+using ::testing::AnyNumber;
 using ::testing::Invoke;
 using ::testing::Sequence;
-using ::testing::Return;
 
 class MockApplication : public mxg::Application {
     public:
@@ -25,7 +23,7 @@ class ApplicationTest : public ::testing::Test {
                 .InSequence(mainLoop);
 
             EXPECT_CALL(app, tick())
-                .Times(AtLeast(0))
+                .Times(AnyNumber())
                 .InSequence(mainLoop);
 
             EXPECT_CALL(app, destroy())

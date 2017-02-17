@@ -27,9 +27,6 @@ namespace mxg {
 
 class DefaultState: public State {
     public:
-        void create() override {}
-        void destroy() override {}
-
         void enter() override {}
         void exit() override {}
 

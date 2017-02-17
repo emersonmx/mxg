@@ -6,10 +6,8 @@
 
 using ::testing::AnyNumber;
 using ::testing::AtLeast;
-using ::testing::AtMost;
 using ::testing::Invoke;
 using ::testing::Sequence;
-using ::testing::Return;
 
 class MockGame : public mxg::Game {
     public:
@@ -18,8 +16,6 @@ class MockGame : public mxg::Game {
 
 class MockState : public mxg::State {
     public:
-        MOCK_METHOD0(create, void());
-        MOCK_METHOD0(destroy, void());
         MOCK_METHOD0(enter, void());
         MOCK_METHOD0(exit, void());
         MOCK_METHOD0(tick, void());
@@ -29,7 +25,7 @@ class GameTest : public ::testing::Test {
     public:
         GameTest() {
             EXPECT_CALL(game, tick())
-                .Times(AtMost(10));
+                .Times(AtLeast(0));
 
             ON_CALL(game, tick())
                 .WillByDefault(Invoke([&](){
@@ -41,13 +37,13 @@ class GameTest : public ::testing::Test {
         MockGame game;
 };
 
-TEST_F(GameTest, CheckGetAndSetState) {
+TEST_F(GameTest, SetState) {
     mxg::DefaultState state;
     game.setState(state);
     ASSERT_EQ(game.getState(), &state);
 }
 
-TEST_F(GameTest, NullAfterClearState) {
+TEST_F(GameTest, OnClearStateDefaultsToNull) {
     mxg::DefaultState state;
     game.setState(state);
     ASSERT_EQ(game.getState(), &state);
@@ -55,7 +51,7 @@ TEST_F(GameTest, NullAfterClearState) {
     ASSERT_EQ(game.getState(), nullptr);
 }
 
-TEST_F(GameTest, JustCallTheEnterEventWhenItIsTheFirstState) {
+TEST_F(GameTest, OnSetStateCallEnter) {
     MockState state;
 
     EXPECT_CALL(state, enter())
@@ -64,7 +60,7 @@ TEST_F(GameTest, JustCallTheEnterEventWhenItIsTheFirstState) {
     game.setState(state);
 }
 
-TEST_F(GameTest, CallEnterAndExit) {
+TEST_F(GameTest, OnSetStateCallExitAndThenEnterWhenStateIsNotNull) {
     MockState firstState;
     MockState secondState;
 
@@ -82,21 +78,15 @@ TEST_F(GameTest, CallEnterAndExit) {
     game.setState(secondState);
 }
 
-TEST_F(GameTest, RunOk) {
+TEST_F(GameTest, RunGame) {
     MockState state;
 
     Sequence stateSequence;
-    EXPECT_CALL(state, create())
-        .Times(1)
-        .InSequence(stateSequence);
     EXPECT_CALL(state, enter())
         .Times(1)
         .InSequence(stateSequence);
     EXPECT_CALL(state, tick())
         .Times(AtLeast(1))
-        .InSequence(stateSequence);
-    EXPECT_CALL(state, destroy())
-        .Times(1)
         .InSequence(stateSequence);
     EXPECT_CALL(state, exit())
         .Times(AnyNumber());
@@ -105,10 +95,6 @@ TEST_F(GameTest, RunOk) {
             game.exit();
         }));
 
-    state.create();
-
     game.setState(state);
     EXPECT_EQ(game.run(), 0);
-
-    state.destroy();
 }
