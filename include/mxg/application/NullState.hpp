@@ -1,4 +1,4 @@
-// Copyright (C) 2016 Emerson Max de Medeiros Silva
+// Copyright (C) 2017 Emerson Max de Medeiros Silva
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -18,18 +18,28 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#include "mxg/application/Game.hpp"
+#ifndef MXG_APPLICATION_NULLSTATE_HPP_
+#define MXG_APPLICATION_NULLSTATE_HPP_
 
-#include <stdexcept>
+#include "mxg/application/DefaultState.hpp"
 
 namespace mxg {
 namespace application {
 
-void Game::setState(State& state) {
-    state_->exit();
-    state.enter();
-    state_ = &state;
-}
+class NullState : public DefaultState {
+    public:
+        static NullState& getInstance() {
+            static NullState instance;
+            return instance;
+        }
+
+        NullState(const NullState&) = delete;
+        void operator=(const NullState&) = delete;
+
+    private:
+        NullState() = default;
+};
 
 } /* namespace application */
 } /* namespace mxg */
+#endif /* MXG_APPLICATION_NULLSTATE_HPP_ */

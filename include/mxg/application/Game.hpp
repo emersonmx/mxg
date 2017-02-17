@@ -23,6 +23,7 @@
 
 #include "mxg/application/Application.hpp"
 #include "mxg/application/State.hpp"
+#include "mxg/application/NullState.hpp"
 
 namespace mxg {
 namespace application {
@@ -33,7 +34,7 @@ class Game : public Application {
         void setState(State& state);
 
     private:
-        State* state_{nullptr};
+        State* state_{&NullState::getInstance()};
 };
 
 } /* namespace application */
