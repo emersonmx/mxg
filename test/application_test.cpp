@@ -36,7 +36,7 @@ class ApplicationTest : public ::testing::Test {
 };
 
 TEST_F(ApplicationTest, RunApplicationSuccessfully) {
-    const int count = 0;
+    int count = 0;
     ON_CALL(app, tick()).WillByDefault(Invoke([&](){
         if (count > 10) {
             app.exit();

@@ -43,14 +43,6 @@ TEST_F(GameTest, SetState) {
     ASSERT_EQ(game.getState(), &state);
 }
 
-TEST_F(GameTest, OnClearStateDefaultsToNull) {
-    mxg::application::DefaultState state;
-    game.setState(state);
-    ASSERT_EQ(game.getState(), &state);
-    game.clearState();
-    ASSERT_EQ(game.getState(), nullptr);
-}
-
 TEST_F(GameTest, OnSetStateCallEnter) {
     MockState state;
 

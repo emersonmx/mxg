@@ -31,7 +31,6 @@ class Game : public Application {
     public:
         State* getState() { return state_; }
         void setState(State& state);
-        void clearState();
 
     private:
         State* state_{nullptr};

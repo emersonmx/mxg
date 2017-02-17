@@ -34,12 +34,5 @@ void Game::setState(State& state) {
     state_ = &state;
 }
 
-void Game::clearState() {
-    if (state_ != nullptr) {
-        state_->exit();
-    }
-    state_ = nullptr;
-}
-
 } /* namespace application */
 } /* namespace mxg */
