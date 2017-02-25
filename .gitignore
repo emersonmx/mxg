@@ -1,5 +1,4 @@
 build
-tags
 .projections.json
 .vimproject
 .session.vim
