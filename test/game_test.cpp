@@ -6,6 +6,7 @@
 
 using ::testing::AnyNumber;
 using ::testing::AtLeast;
+using ::testing::AnyNumber;
 using ::testing::Invoke;
 using ::testing::Sequence;
 
@@ -25,7 +26,7 @@ class GameTest : public ::testing::Test {
     public:
         GameTest() {
             EXPECT_CALL(game, tick())
-                .Times(AtLeast(0));
+                .Times(AnyNumber());
 
             ON_CALL(game, tick())
                 .WillByDefault(Invoke([&](){
