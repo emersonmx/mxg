@@ -1,7 +1,7 @@
 # Targets
 add_library(${PROJECT_NAME}
     mxg/application/Application.cpp
-    mxg/application/Game.cpp
+    mxg/application/StateApplication.cpp
 )
 
 # Install

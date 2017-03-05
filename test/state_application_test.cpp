@@ -2,7 +2,7 @@
 #include "gmock/gmock.h"
 
 #include "mxg/application/DefaultState.hpp"
-#include "mxg/application/Game.hpp"
+#include "mxg/application/StateApplication.hpp"
 
 using ::testing::AnyNumber;
 using ::testing::AtLeast;
@@ -10,7 +10,7 @@ using ::testing::AnyNumber;
 using ::testing::Invoke;
 using ::testing::Sequence;
 
-class MockGame : public mxg::application::Game {
+class MockStateApplication : public mxg::application::StateApplication {
     public:
         MOCK_METHOD0(tick, void());
 };
@@ -22,42 +22,42 @@ class MockState : public mxg::application::State {
         MOCK_METHOD0(tick, void());
 };
 
-class GameTest : public ::testing::Test {
+class StateApplicationTest : public ::testing::Test {
     public:
-        GameTest() {
-            EXPECT_CALL(game, tick())
+        StateApplicationTest() {
+            EXPECT_CALL(stateApplication, tick())
                 .Times(AnyNumber());
 
-            ON_CALL(game, tick())
+            ON_CALL(stateApplication, tick())
                 .WillByDefault(Invoke([&](){
-                    game.getState()->tick();
+                    stateApplication.getState()->tick();
                 }));
         }
-        virtual ~GameTest() {}
+        virtual ~StateApplicationTest() {}
 
-        MockGame game;
+        MockStateApplication stateApplication;
 };
 
-TEST_F(GameTest, SetState) {
+TEST_F(StateApplicationTest, SetState) {
     mxg::application::DefaultState state;
-    game.setState(state);
-    ASSERT_EQ(game.getState(), &state);
+    stateApplication.setState(state);
+    ASSERT_EQ(stateApplication.getState(), &state);
 }
 
-TEST_F(GameTest, DontThrowErrorWhenNullState) {
-    game.tick();
+TEST_F(StateApplicationTest, DontThrowErrorWhenNullState) {
+    stateApplication.tick();
 }
 
-TEST_F(GameTest, OnSetStateCallEnter) {
+TEST_F(StateApplicationTest, OnSetStateCallEnter) {
     MockState state;
 
     EXPECT_CALL(state, enter())
         .Times(1);
 
-    game.setState(state);
+    stateApplication.setState(state);
 }
 
-TEST_F(GameTest, OnSetStateCallExitAndThenEnterWhenStateIsNotNull) {
+TEST_F(StateApplicationTest, OnSetStateCallExitAndThenEnterWhenStateIsNotNull) {
     MockState firstState;
     MockState secondState;
 
@@ -71,11 +71,11 @@ TEST_F(GameTest, OnSetStateCallExitAndThenEnterWhenStateIsNotNull) {
         .Times(1)
         .InSequence(sequence);
 
-    game.setState(firstState);
-    game.setState(secondState);
+    stateApplication.setState(firstState);
+    stateApplication.setState(secondState);
 }
 
-TEST_F(GameTest, RunGame) {
+TEST_F(StateApplicationTest, RunStateApplication) {
     MockState state;
 
     Sequence stateSequence;
@@ -89,9 +89,9 @@ TEST_F(GameTest, RunGame) {
         .Times(AnyNumber());
     ON_CALL(state, tick())
         .WillByDefault(Invoke([&](){
-            game.exit();
+            stateApplication.exit();
         }));
 
-    game.setState(state);
-    EXPECT_EQ(game.run(), 0);
+    stateApplication.setState(state);
+    EXPECT_EQ(stateApplication.run(), 0);
 }
