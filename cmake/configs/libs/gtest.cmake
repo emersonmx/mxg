@@ -1,7 +1,4 @@
-# Setup
 find_package(Threads REQUIRED)
-
-include(ExternalProject)
 
 ExternalProject_Add(
     gtest

@@ -14,5 +14,8 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/configs/options.cmake)
 # Compiler settings
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/configs/compiler.cmake)
 
+# Libs
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/configs/libs.cmake)
+
 # Build settings
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/configs/build.cmake)
