@@ -1,0 +1,8 @@
+/build
+/.tags
+/.session.vim
+/.vimproject
+/.projections.json
+/.cquery
+/.gutctags
+/compile_commands.json
