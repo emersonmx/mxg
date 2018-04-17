@@ -16,5 +16,8 @@ private:
     float matrix_[16];
 };
 
+bool operator ==(const Transform& left, const Transform& right);
+bool operator !=(const Transform& left, const Transform& right);
+
 } /* namespace mxg */
 #endif /* MXG_TRANSFORM_HPP_ */
