@@ -13,7 +13,7 @@ public:
     const float* getMatrix() const;
 
 private:
-    float matrix_[9];
+    float matrix_[16];
 };
 
 } /* namespace mxg */
