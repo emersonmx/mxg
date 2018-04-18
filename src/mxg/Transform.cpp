@@ -78,9 +78,9 @@ Transform& Transform::rotate(float radians) {
 }
 
 Transform& Transform::scale(const Vector2& factors) {
-    Transform scaling{factors.x, 0,        0,
-                          0,        factors.y, 0,
-                          0,        0,        1};
+    Transform scaling{factors.x, 0,         0,
+                      0,         factors.y, 0,
+                      0,         0,         1};
     return combine(scaling);
 }
 
