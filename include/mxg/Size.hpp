@@ -14,5 +14,8 @@ public:
     uint32_t height;
 };
 
+bool operator == (const Size& left, const Size& right);
+bool operator != (const Size& left, const Size& right);
+
 } /* namespace mxg */
 #endif /* MXG_SIZE_HPP_ */
