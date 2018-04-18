@@ -24,4 +24,5 @@ target_link_libraries(${PROJECT_NAME}-tests
     mxgsdl
 
     ${SDL2_LIBRARIES}
+    ${SDL2_IMAGE_LIBRARIES}
 )
