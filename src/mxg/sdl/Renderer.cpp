@@ -12,10 +12,6 @@ Renderer::Renderer(SDL_Window* window) {
     create(window);
 }
 
-Renderer::~Renderer() {
-    destroy();
-}
-
 void Renderer::destroy() {
     SDL_DestroyRenderer(renderer_);
     renderer_ = nullptr;

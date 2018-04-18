@@ -13,7 +13,6 @@ namespace sdl {
 class Window {
 public:
     Window() = default;
-    ~Window();
 
     bool isOpen() const;
     std::string getTitle() const;

@@ -12,7 +12,6 @@ class Renderer {
 public:
     Renderer() = default;
     Renderer(SDL_Window* window);
-    ~Renderer();
 
     void create(SDL_Window* window);
     void destroy();

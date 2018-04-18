@@ -8,13 +8,10 @@
 namespace mxg {
 namespace sdl {
 
-Window::~Window() {
-    close();
-}
-
 bool Window::isOpen() const {
     return window_ != nullptr;
 }
+
 std::string Window::getTitle() const {
     assert(window_ != nullptr);
 
