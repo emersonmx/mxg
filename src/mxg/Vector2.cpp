@@ -6,14 +6,6 @@ Vector2::Vector2() : x(0.0f), y(0.0f) {}
 
 Vector2::Vector2(float aX, float aY) : x(aX), y(aY) {}
 
-bool operator == (const Vector2& left, const Vector2& right) {
-    return left.x == right.x && left.y == right.y;
-}
-
-bool operator != (const Vector2& left, const Vector2& right) {
-    return left.x != right.x || left.y != right.y;
-}
-
 Vector2 operator + (const Vector2& left, const Vector2& right) {
     return Vector2{left.x + right.x, left.y + right.y};
 }
@@ -60,6 +52,14 @@ Vector2 operator /= (Vector2& left, const float right) {
     left.x /= right;
     left.y /= right;
     return left;
+}
+
+bool operator == (const Vector2& left, const Vector2& right) {
+    return left.x == right.x && left.y == right.y;
+}
+
+bool operator != (const Vector2& left, const Vector2& right) {
+    return left.x != right.x || left.y != right.y;
 }
 
 } /* namespace mxg */
