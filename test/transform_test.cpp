@@ -45,26 +45,22 @@ TEST_CASE("Transforms can be compared", "[transform]") {
     SECTION("comparing with operator == and equal transforms results in true") {
         mxg::Transform a;
         mxg::Transform b;
-
         REQUIRE(a == b);
     }
     SECTION("comparing with operator == and different transforms results in false") {
         mxg::Transform a;
         mxg::Transform b{1, 2, 3, 4, 5, 6, 7, 8, 9};
-
         REQUIRE_FALSE(a == b);
     }
 
     SECTION("comparing with operator != and different transforms results in true") {
         mxg::Transform a;
         mxg::Transform b{1, 2, 3, 4, 5, 6, 7, 8, 9};
-
         REQUIRE(a != b);
     }
     SECTION("comparing with operator != and equal transforms results in false") {
         mxg::Transform a;
         mxg::Transform b;
-
         REQUIRE_FALSE(a != b);
     }
 }
