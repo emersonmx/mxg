@@ -24,6 +24,8 @@ private:
     float matrix_[16];
 };
 
+Transform operator *(const Transform& left, const Transform& right);
+Transform& operator *=(Transform& left, const Transform& right);
 bool operator ==(const Transform& left, const Transform& right);
 bool operator !=(const Transform& left, const Transform& right);
 

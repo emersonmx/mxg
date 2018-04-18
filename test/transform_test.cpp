@@ -79,10 +79,19 @@ TEST_CASE("Transforms can be combined", "[transform]") {
                           0, 1, 8,
                           0, 0, 1};
 
-    SECTION("combining with transforms updates itself and returns combined transform") {
-        REQUIRE(a.combine(b) == result);
-        REQUIRE(a == result);
-    }
+    REQUIRE(a.combine(b) == result);
+    REQUIRE(a == result);
+
+    a = {1, 0, 3,
+        0, 1, 3,
+        0, 0, 1};
+    REQUIRE((a * b) == result);
+
+    a = {1, 0, 3,
+        0, 1, 3,
+        0, 0, 1};
+    a *= b;
+    REQUIRE(a == result);
 }
 
 TEST_CASE("Transforms can be translated", "[transform]") {

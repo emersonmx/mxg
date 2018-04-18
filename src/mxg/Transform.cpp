@@ -84,6 +84,14 @@ Transform& Transform::scale(const Vector2& factors) {
     return combine(scaling);
 }
 
+Transform operator *(const Transform& left, const Transform& right) {
+    return Transform(left).combine(right);
+}
+
+Transform& operator *=(Transform& left, const Transform& right) {
+    return left.combine(right);
+}
+
 bool operator ==(const Transform& left, const Transform& right)
 {
     auto a = left.getMatrix();
