@@ -5,5 +5,6 @@ add_library(mxgsdl
     mxg/Vector2.cpp
     mxg/sdl/Renderer.cpp
     mxg/sdl/Texture.cpp
+    mxg/sdl/TextureLoader.cpp
     mxg/sdl/Window.cpp
 )
