@@ -1,6 +1,8 @@
 #ifndef MXG_TRANSFORM_HPP_
 #define MXG_TRANSFORM_HPP_
 
+#include <mxg/Vector2.hpp>
+
 namespace mxg {
 
 class Transform {
@@ -11,6 +13,12 @@ public:
               float a20, float a21, float a22);
 
     const float* getMatrix() const;
+    Transform getInverse() const;
+
+    Transform& combine(const Transform& transform);
+    Transform& translate(const Vector2& offset);
+    Transform& rotate(float radians);
+    Transform& scale(const Vector2& factors);
 
 private:
     float matrix_[16];

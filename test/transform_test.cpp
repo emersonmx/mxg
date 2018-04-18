@@ -1,5 +1,8 @@
 #include <catch.hpp>
 
+#include <iostream>
+
+#include <mxg/Vector2.hpp>
 #include <mxg/Transform.hpp>
 
 bool matrix_equals(const float* a, const float* b, double epsilon=0.001) {
@@ -66,16 +69,70 @@ TEST_CASE("Transforms can be compared", "[transform]") {
 }
 
 TEST_CASE("Transforms can be combined", "[transform]") {
+    mxg::Transform a{1, 0, 3,
+                     0, 1, 3,
+                     0, 0, 1};
+    mxg::Transform b{1, 0, 5,
+                     0, 1, 5,
+                     0, 0, 1};
+    mxg::Transform result{1, 0, 8,
+                          0, 1, 8,
+                          0, 0, 1};
+
+    SECTION("combining with transforms updates itself and returns combined transform") {
+        REQUIRE(a.combine(b) == result);
+        REQUIRE(a == result);
+    }
 }
 
 TEST_CASE("Transforms can be translated", "[transform]") {
+    mxg::Transform a{1, 0, 3,
+                     0, 1, 3,
+                     0, 0, 1};
+    mxg::Vector2 b{5, 5};
+    mxg::Transform result{1, 0, 8,
+                          0, 1, 8,
+                          0, 0, 1};
+
+    REQUIRE(a.translate(b) == result);
 }
 
 TEST_CASE("Transforms can be rotated", "[transform]") {
+    mxg::Transform a;
+    mxg::Transform result{0.8660254, -0.5,      0,
+                          0.5,       0.8660254, 0,
+                          0,         0,         1};
+
+    a.rotate(0.523599);
+    REQUIRE(matrix_equals(a.getMatrix(), result.getMatrix()));
 }
 
 TEST_CASE("Transforms can be scaled", "[transform]") {
+    mxg::Transform a;
+    mxg::Transform result{2, 0, 0,
+                          0, 2, 0,
+                          0, 0, 1};
+
+    REQUIRE(a.scale({2, 2}) == result);
 }
 
 TEST_CASE("Transforms can be inverted", "[transform]") {
+    SECTION("inverting an identity matrix results in an identity matrix") {
+        mxg::Transform identity;
+        REQUIRE(matrix_equals(identity.getInverse().getMatrix(), identity.getMatrix()));
+    }
+    SECTION("inverting a matrix results in inverted matrix") {
+        mxg::Transform a{
+            9,  3,  5,
+        -6, -9,  7,
+        -1, -8,  1
+        };
+        mxg::Transform result{
+            0.0764228, -0.0699187,  0.107317,
+            -0.00162602, 0.0227642, -0.15122,
+            0.0634146,  0.112195,  -0.102439
+        };
+
+        REQUIRE(matrix_equals(a.getInverse().getMatrix(), result.getMatrix()));
+    }
 }
