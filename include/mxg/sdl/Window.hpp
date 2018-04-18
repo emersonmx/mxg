@@ -22,6 +22,7 @@ public:
     void create(const std::string& title, const Size& size);
     void close();
 
+    SDL_Window* get() const { return window_; }
     operator SDL_Window*() const { return window_; }
 
 private:

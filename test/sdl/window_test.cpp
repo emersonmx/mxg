@@ -10,15 +10,15 @@ TEST_CASE("Windows can be created and closed", "[window]") {
     mxg::sdl::Window window;
 
     SECTION("creating without call create results in undefined behavior") {
-        REQUIRE(static_cast<SDL_Window*>(window) == nullptr);
+        REQUIRE(window.get() == nullptr);
         window.create("Test Window", {640, 480});
-        REQUIRE(static_cast<SDL_Window*>(window) != nullptr);
+        REQUIRE(window.get() != nullptr);
     }
     SECTION("closing invalidates window") {
         window.create("Test Window", {640, 480});
-        REQUIRE(static_cast<SDL_Window*>(window) != nullptr);
+        REQUIRE(window.get() != nullptr);
         window.close();
-        REQUIRE(static_cast<SDL_Window*>(window) == nullptr);
+        REQUIRE(window.get() == nullptr);
     }
     SECTION("open is false when instantiated") {
         REQUIRE(window.isOpen() == false);

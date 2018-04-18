@@ -24,6 +24,7 @@ public:
     void clear(const Color& color);
     void present();
 
+    SDL_Renderer* get() const { return renderer_; }
     operator SDL_Renderer*() const { return renderer_; }
 
 private:

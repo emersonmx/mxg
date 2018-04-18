@@ -15,15 +15,15 @@ TEST_CASE("Renderer can be used", "[renderer]") {
     mxg::sdl::Renderer renderer;
 
     SECTION("creating without call create results in undefined behavior") {
-        REQUIRE(static_cast<SDL_Renderer*>(renderer) == nullptr);
+        REQUIRE(renderer.get() == nullptr);
         renderer.create(window);
-        REQUIRE(static_cast<SDL_Renderer*>(renderer) != nullptr);
+        REQUIRE(renderer.get() != nullptr);
     }
     SECTION("destroy invalidates renderer") {
         renderer.create(window);
-        REQUIRE(static_cast<SDL_Renderer*>(renderer) != nullptr);
+        REQUIRE(renderer.get() != nullptr);
         renderer.destroy();
-        REQUIRE(static_cast<SDL_Renderer*>(renderer) == nullptr);
+        REQUIRE(renderer.get() == nullptr);
     }
     SECTION("creating changes clear color to black") {
         renderer.create(window);
