@@ -1,6 +1,7 @@
 # Targets
 add_library(mxg
     mxg/Size.cpp
+    mxg/Time.cpp
     mxg/Transform.cpp
     mxg/Vector2.cpp
 )
