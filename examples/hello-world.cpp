@@ -6,6 +6,7 @@
 #include <mxg/sdl/Window.hpp>
 #include <mxg/sdl/Renderer.hpp>
 #include <mxg/sdl/TextureLoader.hpp>
+#include <mxg/Clock.hpp>
 
 int main() {
     srand(time(nullptr));
@@ -29,9 +30,16 @@ int main() {
     mxg::sdl::TextureLoader textureLoader{renderer};
     mxg::sdl::Texture texture = textureLoader.load("assets/awful-smile.png");
 
-    renderer.clear();
+    mxg::Clock clock;
+
+    mxg::Vector2 position = windowSize / 2;
+    mxg::Vector2 velocity{1, 1};
+    int speed = 200;
+
     bool running = true;
     while (running) {
+        float delta = clock.restart().asSeconds();
+
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
@@ -39,15 +47,19 @@ int main() {
             }
         }
 
-        mxg::Vector2 position = {
-            static_cast<float>(rand() % windowSize.width),
-            static_cast<float>(rand() % windowSize.height),
-        };
-        position -= texture.getSize() / 2;
-        renderer.render(texture, position);
+        if (position.x < 0 || position.x > windowSize.width) {
+            velocity.x = -velocity.x;
+        }
+        if (position.y < 0 || position.y > windowSize.height) {
+            velocity.y = -velocity.y;
+        }
 
-        SDL_Delay(10);
+        position += velocity * speed * delta;
+
+        renderer.clear();
+        renderer.render(texture, position - texture.getSize() / 2);
         renderer.present();
+        SDL_Delay(16);
     }
 
     renderer.destroy();
