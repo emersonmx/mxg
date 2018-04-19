@@ -54,6 +54,19 @@ void Renderer::clear(const Color& color) {
     SDL_RenderClear(renderer_);
 }
 
+void Renderer::render(const Texture& texture, const Vector2& position) {
+    auto size = texture.getSize();
+
+    SDL_Rect offset{
+        static_cast<int>(position.x),
+        static_cast<int>(position.y),
+        static_cast<int>(size.width),
+        static_cast<int>(size.height)
+    };
+
+    SDL_RenderCopy(renderer_, texture, nullptr, &offset);
+}
+
 void Renderer::render(const Texture& texture, const Transform& transform) {
     auto size = texture.getSize();
 

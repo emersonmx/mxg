@@ -23,6 +23,7 @@ public:
 
     void clear();
     void clear(const Color& color);
+    void render(const Texture& texture, const Vector2& position);
     void render(const Texture& texture, const Transform& transform);
     void present();
 
