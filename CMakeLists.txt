@@ -13,6 +13,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE
 
 # Options
 option(BUILD_TESTS "Build tests" ON)
+option(BUILD_EXAMPLES "Build examples" OFF)
 
 # Compiler settings
 if (NOT CMAKE_BUILD_TYPE)
@@ -59,4 +60,7 @@ add_subdirectory(src)
 
 if (BUILD_TESTS)
     add_subdirectory(test)
+endif()
+if (BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
