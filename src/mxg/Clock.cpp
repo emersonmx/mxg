@@ -1,4 +1,5 @@
 #include <mxg/Clock.hpp>
+
 #include <mxg/ClockImpl.hpp>
 
 namespace mxg {

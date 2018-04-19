@@ -1,5 +1,6 @@
 #include <catch.hpp>
 
+#include <mxg/Size.hpp>
 #include <mxg/Vector2.hpp>
 
 TEST_CASE("Vector2 can be created", "[vector2]") {
@@ -89,4 +90,11 @@ TEST_CASE("Vector2 can be manipulated", "[vector2]") {
         a /= 2;
         REQUIRE(a == mxg::Vector2{1, 1});
     }
+}
+
+TEST_CASE("Vector2 can work with Size", "[size][vector2]") {
+    mxg::Vector2 a{10, 10};
+    mxg::Size s{32, 32};
+    mxg::Vector2 result{26, 26};
+    REQUIRE((a + s / 2) == result);
 }
