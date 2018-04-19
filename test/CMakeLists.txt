@@ -21,6 +21,7 @@ add_dependencies(${PROJECT_NAME}-tests
 )
 
 target_link_libraries(${PROJECT_NAME}-tests
+    mxg
     mxgsdl
 
     ${SDL2_LIBRARIES}

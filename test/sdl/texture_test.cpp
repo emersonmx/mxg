@@ -9,7 +9,7 @@
 #include <mxg/sdl/Texture.hpp>
 #include <mxg/sdl/TextureLoader.hpp>
 
-TEST_CASE("Textures can be used", "[texture]") {
+TEST_CASE("Textures can be used", "[sdl][texture]") {
     REQUIRE(SDL_Init(SDL_INIT_VIDEO) == 0);
     int imgFlags = IMG_INIT_PNG;
     REQUIRE((IMG_Init(imgFlags) & imgFlags) == imgFlags);

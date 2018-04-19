@@ -4,7 +4,7 @@
 
 #include <mxg/sdl/Window.hpp>
 
-TEST_CASE("Windows can be created and closed", "[window]") {
+TEST_CASE("Windows can be created and closed", "[sdl][window]") {
     REQUIRE(SDL_Init(SDL_INIT_VIDEO) == 0);
 
     mxg::sdl::Window window;

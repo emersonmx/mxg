@@ -54,6 +54,24 @@ void Renderer::clear(const Color& color) {
     SDL_RenderClear(renderer_);
 }
 
+void Renderer::render(const Texture& texture, const Transform& transform) {
+    auto size = texture.getSize();
+
+    SDL_Rect offset{
+        static_cast<int>(transform.position.x),
+        static_cast<int>(transform.position.y),
+        static_cast<int>(size.width * transform.scale.x),
+        static_cast<int>(size.height * transform.scale.y)
+    };
+
+    SDL_Point center{
+        static_cast<int>(transform.origin.x),
+        static_cast<int>(transform.origin.y)
+    };
+
+    SDL_RenderCopyEx(renderer_, texture, nullptr, &offset, transform.angle, &center, transform.flip);
+}
+
 void Renderer::present() {
     assert(renderer_ != nullptr);
 

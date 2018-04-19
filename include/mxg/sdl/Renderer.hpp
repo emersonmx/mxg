@@ -4,6 +4,8 @@
 #include <SDL_render.h>
 
 #include <mxg/Color.hpp>
+#include <mxg/sdl/Texture.hpp>
+#include <mxg/sdl/Transform.hpp>
 
 namespace mxg {
 namespace sdl {
@@ -21,6 +23,7 @@ public:
 
     void clear();
     void clear(const Color& color);
+    void render(const Texture& texture, const Transform& transform);
     void present();
 
     SDL_Renderer* get() const { return renderer_; }
