@@ -1,5 +1,7 @@
 # Targets
 add_library(mxg
+    mxg/Clock.cpp
+    mxg/ClockImpl.cpp
     mxg/Size.cpp
     mxg/Time.cpp
     mxg/Transform.cpp
