@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}-tests ${SRCS})
 add_dependencies(${PROJECT_NAME}-tests
     catch
     #fakeit
+    mxg
     mxgsdl
 )
 
