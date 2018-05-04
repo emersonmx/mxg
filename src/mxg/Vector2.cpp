@@ -8,8 +8,16 @@ Vector2::Vector2() : x(0.0f), y(0.0f) {}
 
 Vector2::Vector2(float aX, float aY) : x(aX), y(aY) {}
 
+float Vector2::length() const {
+    return sqrt(length_squared());
+}
+
+float Vector2::length_squared() const {
+    return x * x + y * y;
+}
+
 void Vector2::normalize() {
-    float l = x * x + y * y;
+    float l = length_squared();
     if (l != 0) {
         l = sqrt(l);
         *this /= l;
