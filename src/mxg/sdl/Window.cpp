@@ -37,7 +37,7 @@ void Window::create(const std::string& title, const Size& size) {
     }
 }
 
-void Window::close() {
+void Window::destroy() {
     SDL_DestroyWindow(window_);
     window_ = nullptr;
 }

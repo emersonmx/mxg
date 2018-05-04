@@ -63,7 +63,7 @@ int main() {
     }
 
     renderer.destroy();
-    window.close();
+    window.destroy();
 
     IMG_Quit();
     SDL_Quit();

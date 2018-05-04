@@ -17,7 +17,7 @@ TEST_CASE("Windows can be created and closed", "[sdl][window]") {
     SECTION("closing invalidates window") {
         window.create("Test Window", {640, 480});
         REQUIRE(window.get() != nullptr);
-        window.close();
+        window.destroy();
         REQUIRE(window.get() == nullptr);
     }
     SECTION("open is false when instantiated") {
@@ -28,7 +28,7 @@ TEST_CASE("Windows can be created and closed", "[sdl][window]") {
         REQUIRE(window.isOpen() == true);
     }
     SECTION("closing changes open to false") {
-        window.close();
+        window.destroy();
         REQUIRE(window.isOpen() == false);
     }
     SECTION("creating with title changes it value") {

@@ -40,7 +40,7 @@ TEST_CASE("Textures can be used", "[sdl][texture]") {
     }
 
     renderer.destroy();
-    window.close();
+    window.destroy();
 
     IMG_Quit();
     SDL_Quit();

@@ -19,7 +19,7 @@ public:
     Size getSize() const;
 
     void create(const std::string& title, const Size& size);
-    void close();
+    void destroy();
 
     SDL_Window* get() const { return window_; }
     operator SDL_Window*() const { return window_; }

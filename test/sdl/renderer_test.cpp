@@ -84,7 +84,7 @@ TEST_CASE("Renderer can be used", "[sdl][renderer]") {
     }
 
     renderer.destroy();
-    window.close();
+    window.destroy();
 
     SDL_Quit();
 }
