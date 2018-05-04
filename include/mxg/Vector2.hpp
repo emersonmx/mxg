@@ -8,6 +8,9 @@ public:
     Vector2();
     Vector2(float x, float y);
 
+    void normalize();
+    Vector2 normalized() const;
+
     float x;
     float y;
 };
