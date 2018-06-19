@@ -5,7 +5,7 @@ include(${PROJECT_SOURCE_DIR}/cmake/libs/catch.cmake)
 file(GLOB SRCS
     _main.cpp
     *_test.cpp
-    sdl/*_test.cpp
+    # sdl/*_test.cpp
 )
 
 include_directories(
@@ -18,13 +18,13 @@ add_dependencies(${PROJECT_NAME}-tests
     catch
     #fakeit
     mxg
-    mxgsdl
+    # mxgsdl
 )
 
 target_link_libraries(${PROJECT_NAME}-tests
     mxg
-    mxgsdl
+    # mxgsdl
 
-    ${SDL2_LIBRARIES}
-    ${SDL2_IMAGE_LIBRARIES}
+    # ${SDL2_LIBRARIES}
+    # ${SDL2_IMAGE_LIBRARIES}
 )
