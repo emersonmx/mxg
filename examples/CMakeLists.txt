@@ -1,12 +1,12 @@
-add_executable(init_example
-    init_example.cpp
+add_executable(basic_example
+    basic_example.cpp
 )
 
-add_dependencies(init_example
+add_dependencies(basic_example
     mxgsdl
 )
 
-target_link_libraries(init_example
+target_link_libraries(basic_example
     mxgsdl
 
     ${SDL2_LIBRARIES}
