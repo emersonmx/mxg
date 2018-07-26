@@ -11,8 +11,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})
 
-set(BACKEND_TYPE "sdl2" CACHE STRING "Backend type")
-
 # Options
 option(BUILD_TESTS "Build tests" ON)
 option(BUILD_EXAMPLES "Build examples" OFF)
@@ -46,18 +44,16 @@ endif()
 include(FindPkgConfig)
 include(ExternalProject)
 
-if (BACKEND_TYPE STREQUAL "sdl2")
-    pkg_search_module(SDL2 REQUIRED sdl2)
-    pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image>=2.0.0)
-    pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf>=2.0.0)
-    pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer>=2.0.0)
-    include_directories(
-        ${SDL2_INCLUDE_DIRS}
-        ${SDL2_IMAGE_INCLUDE_DIRS}
-        ${SDL2_TTF_INCLUDE_DIRS}
-        ${SDL2_MIXER_INCLUDE_DIRS}
-    )
-endif()
+pkg_search_module(SDL2 REQUIRED sdl2)
+pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image>=2.0.0)
+pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf>=2.0.0)
+pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer>=2.0.0)
+include_directories(
+    ${SDL2_INCLUDE_DIRS}
+    ${SDL2_IMAGE_INCLUDE_DIRS}
+    ${SDL2_TTF_INCLUDE_DIRS}
+    ${SDL2_MIXER_INCLUDE_DIRS}
+)
 
 # Build settings
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
