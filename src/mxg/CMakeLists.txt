@@ -1,4 +1,5 @@
 add_library(mxg
+    Size.cpp
     Vector2.cpp
 )
 
