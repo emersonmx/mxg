@@ -4,6 +4,10 @@ namespace mxg {
 namespace sdl2 {
 
 void Engine::initialize() {
+    if (initialized_) {
+        return;
+    }
+
     initializeSDL();
     initializeSDLImage();
     initializeSDLTTF();
