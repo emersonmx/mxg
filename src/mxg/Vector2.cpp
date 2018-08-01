@@ -6,7 +6,7 @@ namespace mxg {
 
 Vector2::Vector2() : x(0.0f), y(0.0f) {}
 
-Vector2::Vector2(float aX, float aY) : x(aX), y(aY) {}
+Vector2::Vector2(const float aX, const float aY) : x(aX), y(aY) {}
 
 float Vector2::length() const {
     return sqrt(length_squared());
