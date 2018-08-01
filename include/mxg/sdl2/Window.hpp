@@ -21,6 +21,10 @@ class Window : public mxg::Window {
 public:
     using SDLWindowPtr = std::unique_ptr<SDL_Window, SDLWindowDeleter>;
 
+    Window() = default;
+    Window(const Window&) = delete;
+    Window& operator=(const Window&) = delete;
+
     ~Window() override;
     bool isOpen() const override;
     std::string getTitle() const override;
