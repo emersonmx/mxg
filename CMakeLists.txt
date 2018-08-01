@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.11)
 project(mxg)
+cmake_minimum_required(VERSION 3.11)
+set(CMAKE_CXX_STANDARD 17)
 
 set(mxg_VERSION_MAJOR 0)
 set(mxg_VERSION_MINOR 1)
@@ -32,8 +33,6 @@ endif()
 if (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmessage-length=0")
 endif()
-
-set(CMAKE_CXX_STANDARD 17)
 
 if (WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__NO_INLINE__ -D_USE_MATH_DEFINES")
