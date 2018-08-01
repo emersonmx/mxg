@@ -2,7 +2,7 @@
 
 namespace mxg {
 
-Size::Size(uint32_t aWidth, uint32_t aHeight) {
+Size::Size(const uint32_t aWidth, const uint32_t aHeight) {
     width = aWidth;
     height = aHeight;
 }

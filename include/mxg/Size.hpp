@@ -10,7 +10,7 @@ namespace mxg {
 class Size {
 public:
     Size() = default;
-    Size(uint32_t aWidth, uint32_t aHeight);
+    Size(const uint32_t aWidth, const uint32_t aHeight);
 
     Vector2 toVector2() const;
     operator Vector2() const { return toVector2(); }
