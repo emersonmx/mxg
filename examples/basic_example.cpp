@@ -14,6 +14,6 @@ int main() {
         SDL_Delay(2000);
     }
 
-    engine->initialize();
+    engine->finalize();
     return 0;
 }
