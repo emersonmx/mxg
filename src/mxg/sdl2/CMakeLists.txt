@@ -1,4 +1,4 @@
 add_library(mxgsdl
-    Engine.cpp
+    Core.cpp
     Window.cpp
 )

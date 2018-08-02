@@ -1,11 +1,10 @@
 #include <memory>
 
-#include <mxg/sdl2/Engine.hpp>
+#include <mxg/sdl2/Core.hpp>
 #include <mxg/sdl2/Window.hpp>
 
 int main() {
-    std::unique_ptr<mxg::Engine> engine = std::make_unique<mxg::sdl2::Engine>();
-    engine->initialize();
+    mxg::sdl2::initialize();
 
     {
         std::unique_ptr<mxg::Window> window = std::make_unique<mxg::sdl2::Window>();
@@ -14,6 +13,7 @@ int main() {
         SDL_Delay(2000);
     }
 
-    engine->finalize();
+    mxg::sdl2::finalize();
+
     return 0;
 }
