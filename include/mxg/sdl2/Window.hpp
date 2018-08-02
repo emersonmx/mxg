@@ -21,10 +21,11 @@ using SDLWindowPtr = std::unique_ptr<SDL_Window, SDLWindowDeleter>;
 class Window {
 public:
     Window() = default;
+    Window(SDL_Window* window);
+
     Window(const Window&) = delete;
     Window& operator=(const Window&) = delete;
 
-    ~Window();
     bool isOpen() const;
     std::string getTitle() const;
     Size getSize() const;

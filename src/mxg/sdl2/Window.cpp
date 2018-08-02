@@ -5,9 +5,7 @@
 namespace mxg {
 namespace sdl2 {
 
-Window::~Window() {
-    destroy();
-}
+Window::Window(SDL_Window* window) : window_(window) {}
 
 bool Window::isOpen() const {
     return static_cast<bool>(window_);
