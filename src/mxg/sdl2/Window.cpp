@@ -14,21 +14,17 @@ bool Window::isOpen() const {
 }
 
 std::string Window::getTitle() const {
-    if (!isOpen()) {
-        return "";
-    }
-
-    return SDL_GetWindowTitle(window_.get());
+    return SDL_GetWindowTitle(getContents());
 }
 
 Size Window::getSize() const {
-    if (!isOpen()) {
-        return Size();
-    }
-
     int width{}, height{};
-    SDL_GetWindowSize(window_.get(), &width, &height);
+    SDL_GetWindowSize(getContents(), &width, &height);
     return Size{static_cast<uint32_t>(width), static_cast<uint32_t>(height)};
+}
+
+SDL_Window* Window::getContents() const {
+    return window_.get();
 }
 
 void Window::create(const std::string& title, const Size& size) {

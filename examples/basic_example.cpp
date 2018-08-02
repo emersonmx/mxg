@@ -7,8 +7,8 @@ int main() {
     mxg::sdl2::initialize();
 
     {
-        std::unique_ptr<mxg::Window> window = std::make_unique<mxg::sdl2::Window>();
-        window->create("Basic Example", {800, 600});
+        mxg::sdl2::Window window;
+        window.create("Basic Example", {800, 600});
 
         SDL_Delay(2000);
     }

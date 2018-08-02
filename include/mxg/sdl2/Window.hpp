@@ -6,7 +6,6 @@
 #include <SDL2/SDL_video.h>
 
 #include <mxg/Size.hpp>
-#include <mxg/Window.hpp>
 
 namespace mxg {
 namespace sdl2 {
@@ -17,21 +16,22 @@ struct SDLWindowDeleter {
     }
 };
 
-class Window : public mxg::Window {
-public:
-    using SDLWindowPtr = std::unique_ptr<SDL_Window, SDLWindowDeleter>;
+using SDLWindowPtr = std::unique_ptr<SDL_Window, SDLWindowDeleter>;
 
+class Window {
+public:
     Window() = default;
     Window(const Window&) = delete;
     Window& operator=(const Window&) = delete;
 
-    ~Window() override;
-    bool isOpen() const override;
-    std::string getTitle() const override;
-    Size getSize() const override;
+    ~Window();
+    bool isOpen() const;
+    std::string getTitle() const;
+    Size getSize() const;
+    SDL_Window* getContents() const;
 
-    void create(const std::string& title, const Size& size) override;
-    void destroy() override;
+    void create(const std::string& title, const Size& size);
+    void destroy();
 
 private:
     SDLWindowPtr window_{};
