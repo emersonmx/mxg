@@ -1,4 +1,4 @@
-add_library(mxg
+add_library(mxg STATIC
     Clock.cpp
     ClockImpl.cpp
     Size.cpp
