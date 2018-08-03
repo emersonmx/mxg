@@ -5,5 +5,3 @@ add_library(mxg
     Time.cpp
     Vector2.cpp
 )
-
-add_subdirectory(sdl2)

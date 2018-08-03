@@ -1,5 +1,5 @@
-project(mxg)
 cmake_minimum_required(VERSION 3.11)
+project(mxg LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 set(mxg_VERSION_MAJOR 0)
@@ -8,12 +8,9 @@ set(mxg_VERSION_REVISION 0)
 
 # Configs
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})
 
 # Options
-option(BUILD_TESTS "Build tests" ON)
+option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_EXAMPLES "Build examples" OFF)
 
 # Compiler settings
@@ -39,21 +36,6 @@ if (WIN32)
     set(CMAKE_EXE_LINKER_FLAGS "-Wl,--subsystem,windows")
 endif()
 
-# Libs
-include(FindPkgConfig)
-include(ExternalProject)
-
-pkg_search_module(SDL2 REQUIRED sdl2)
-pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image>=2.0.0)
-pkg_search_module(SDL2_TTF REQUIRED SDL2_ttf>=2.0.0)
-pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer>=2.0.0)
-include_directories(
-    ${SDL2_INCLUDE_DIRS}
-    ${SDL2_IMAGE_INCLUDE_DIRS}
-    ${SDL2_TTF_INCLUDE_DIRS}
-    ${SDL2_MIXER_INCLUDE_DIRS}
-)
-
 # Build settings
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -63,6 +45,7 @@ add_subdirectory(src/mxg)
 if (BUILD_TESTS)
     add_subdirectory(test)
 endif()
+
 if (BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
